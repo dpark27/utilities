@@ -40,16 +40,16 @@ def build_haplotypes(ped_file, snp_map, output_file):
             if gt1 == '0':
                 hap1 += '?'
             elif gt1 == ref:
-                hap1 += '1'
-            else:
                 hap1 += '0'
+            else:
+                hap1 += '1'
 
             if gt2 == '0':
                 hap2 += '?'
             elif gt2 == ref:
-                hap2 += '1'
-            else:
                 hap2 += '0'
+            else:
+                hap2 += '1'
 
             gt_idx += 1
 
