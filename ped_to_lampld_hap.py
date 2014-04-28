@@ -14,8 +14,8 @@ def main():
 
     (options, args) = parser.parse_args()
 
-    snp_map, chrom_columns = build_snp_map(options.map_file)
-    build_haplotypes(options.ped_file, snp_map, chrom_columns, options.output_file)
+    snp_map = build_snp_map(options.map_file)
+    build_haplotypes(options.ped_file, snp_map, options.output_file)
 
 
 def build_haplotypes(ped_file, snp_map, output_file):
@@ -75,6 +75,8 @@ def build_snp_map(map_file):
         alt = data[5]
 
         snp_map[line_idx] = [rsid, chrom, pos, ref, alt]
+
+        line_idx += 1
 
     i_file.close()
 
