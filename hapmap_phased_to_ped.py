@@ -26,7 +26,7 @@ def output_ped_file(output_ped_file, chrom, idv_data, gt_data, map_data):
     col_indexes = sorted(idv_data.keys())
     row_indexes = sorted(map_data.keys())
 
-    map_file = output_ped_file.replace('.ped', 'map')
+    map_file = output_ped_file.replace('.ped', '.map')
     o_file = open(map_file, 'wb')
     for row_idx in row_indexes:
         d = map_data[row_idx]
