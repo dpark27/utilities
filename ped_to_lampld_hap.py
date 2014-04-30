@@ -15,10 +15,11 @@ def main():
     (options, args) = parser.parse_args()
 
     snp_map = build_snp_map(options.map_file)
-    build_haplotypes(options.ped_file, snp_map, options.output_file)
+    snps_in_ped = get_snps_in_ped(options.ped_file)
+    build_haplotypes(options.ped_file, snp_map, options.output_file, snps_in_ped)
 
 
-def build_haplotypes(ped_file, snp_map, output_file):
+def build_haplotypes(ped_file, snp_map, output_file, snps_in_ped):
     o_file = open(output_file, 'wb')
 
     i_file = open(ped_file, 'rb')
@@ -35,6 +36,16 @@ def build_haplotypes(ped_file, snp_map, output_file):
             gt2 = gt[1]
 
             snp_data = snp_map[gt_idx]
+            rsid = snp_data[0]
+            while rsid not in snps_in_ped:
+                hap1 += '?'
+                hap2 += '?'
+
+                gt_idx += 1
+                
+                snp_data = snp_map[gt_idx]
+                rsid = snp_data[0]  
+
             ref = snp_data[3]
 
             if gt1 == '0':
@@ -58,6 +69,21 @@ def build_haplotypes(ped_file, snp_map, output_file):
 
     i_file.close()
     o_file.close()
+
+
+def get_snps_in_ped(ped_file):
+    snps_in_ped = {}
+
+    i_file = open(ped_file.replace('.ped', '.map'), 'rb')
+    for line in i_file:
+        data = line.strip().split()
+        rsid = data[1]
+
+        snps_in_ped[rsid] = 1
+
+    i_file.close()
+
+    return snps_in_ped
 
 
 def build_snp_map(map_file):
