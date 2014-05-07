@@ -8,7 +8,7 @@ import numpy as np
 
 def main():
     parser = optparse.OptionParser()
-    parser.add_option('-h', '--hgdp_geno_file', dest='hgdp_geno_file', action='store', type='string', default=None)
+    parser.add_option('-l', '--hgdp_geno_file', dest='hgdp_geno_file', action='store', type='string', default=None)
     parser.add_option('-m', '--hgdp_map_file', dest='hgdp_map_file', action='store', type='string', default=None)
 
     (options, args) = parser.parse_args()
