@@ -39,7 +39,7 @@ def parse_map_file(hgdp_map_file):
 def parse_geno_file(hgdp_geno_file):
     geno_matrix = []
 
-    i_file = open('chr1.geno', 'rb')
+    i_file = open(hgdp_geno_file, 'rb')
     iids = i_file.readline().strip().split()
     geno_matrix.append(iids)
 
