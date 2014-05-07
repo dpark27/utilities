@@ -64,9 +64,11 @@ def parse_geno_file(hgdp_geno_file):
 
 
 def create_plink_format_gt(gt):
+    gt = gt.replace('_', '0')
     gt = gt[0] + ' ' + gt[1]
 
     return gt
+
 
 if __name__ == '__main__':
     main()
