@@ -64,6 +64,10 @@ def build_haplotypes(ped_file, snp_map, output_file, snps_in_ped):
 
             gt_idx += 1
 
+        for i in range(gt_idx, max(snp_map.keys()) + 1):
+            hap1 += '?'
+            hap2 += '?'
+            
         o_file.write(hap1 + '\n')
         o_file.write(hap2 + '\n')
 
