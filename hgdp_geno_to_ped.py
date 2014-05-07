@@ -13,6 +13,9 @@ def main():
 
     (options, args) = parser.parse_args()
 
+    parse_geno_file(options.hgdp_geno_file)
+    parse_map_file(options.hgdp_map_file)
+
 
 def parse_map_file(hgdp_map_file):
     o_file = open(hgdp_map_file.replace('.map', '.plink.map'), 'wb')
