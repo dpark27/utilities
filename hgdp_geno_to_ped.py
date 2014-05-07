@@ -53,7 +53,7 @@ def parse_geno_file(hgdp_geno_file):
     gt_array = np.array(geno_matrix, dtype=np.str)
     vfunc = np.vectorize(create_plink_format_gt)
     for d in gt_array.T:
-        idv_data = map(str, [d[0], d[0], 0, 0, 0, 0])
+        idv_data = ' '.join(map(str, [d[0], d[0], 0, 0, 0, 0]))
         gt_data = ' '.join(vfunc(d[1:]))
 
         plink_row = idv_data + ' ' + gt_data + '\n'
