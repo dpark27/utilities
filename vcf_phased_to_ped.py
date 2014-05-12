@@ -76,8 +76,8 @@ def parse_vcf(vcf_phased_file):
                 for gt_d in gts:
                     gt_d = gt_d.split(':')[0]
                     gts = gt_d.split('|')
-                    allele1 = gts[0].replace('0', ref).replace('1', alt)
-                    allele2 = gts[1].replace('0', ref).replace('1', alt)
+                    allele1 = gts[0].replace('0', ref).replace('1', alt).replace('.', '0')
+                    allele2 = gts[1].replace('0', ref).replace('1', alt).replace('.', '0')
 
                     if col_idx in gt_data:
                         gt_data[col_idx].append(allele1)
