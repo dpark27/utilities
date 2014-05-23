@@ -76,8 +76,13 @@ def compute_allele_frequencies(lanc, genos):
     # compute at each snp
     n_snps = lanc.shape[1]
     for i in xrange(0, n_snps):
+        # determine which is minor allele
+        minor_allele = 0
+        if np.where(genos[:, i]== 0)[0].shape[0] > np.where(genos[:, i]== 1)[0].shape[0]:
+            minor_allele = 1
+
         eur_snps = np.where(lanc[:, i]==0)
-        eur_ref_count = np.where(genos[eur_snps[0], i]==0)[0].shape[0]
+        eur_ref_count = np.where(genos[eur_snps[0], i]==minor_allele)[0].shape[0]
         eur_snps = eur_snps[0].shape[0]
 
         eur_freq = 0
@@ -85,14 +90,14 @@ def compute_allele_frequencies(lanc, genos):
             eur_freq = float(eur_ref_count) / eur_snps
 
         nam_snps = np.where(lanc[:, i]==1)
-        nam_ref_count = np.where(genos[nam_snps[0], i]==0)[0].shape[0]
+        nam_ref_count = np.where(genos[nam_snps[0], i]==minor_allele)[0].shape[0]
         nam_snps = nam_snps[0].shape[0]
         nam_freq = 0
         if nam_snps != 0:
             nam_freq = float(nam_ref_count) / nam_snps
 
         afr_snps = np.where(lanc[:, i]==2)
-        afr_ref_count = np.where(genos[afr_snps[0], i]==0)[0].shape[0]
+        afr_ref_count = np.where(genos[afr_snps[0], i]==minor_allele)[0].shape[0]
         afr_snps = afr_snps[0].shape[0]
         afr_freq = 0
         if afr_snps != 0:
