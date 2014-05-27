@@ -45,13 +45,13 @@ def convert_to_lampld_out(lanc_file, out_file):
 
             idv_breaks.append(interval)
 
-        anc1 = lanc[i, lanc.shape[0] - 1]
-        anc2 = lanc[i+1, lanc.shape[0] - 1]
+        anc1 = lanc[i, lanc.shape[1] - 1]
+        anc2 = lanc[i+1, lanc.shape[1] - 1]
 
         anc = sorted([anc1, anc2])
         anc = ''.join(map(str, anc))
 
-        interval = [anc, ':', lanc.shape[0]]
+        interval = [anc, ':', lanc.shape[1]]
         interval = ''.join(map(str, interval))
 
         idv_breaks.append(interval)
