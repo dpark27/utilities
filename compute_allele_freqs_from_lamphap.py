@@ -81,7 +81,7 @@ def compute_allele_frequencies(lanc, genos):
         if np.where(genos[:, i]== 0)[0].shape[0] > np.where(genos[:, i]== 1)[0].shape[0]:
             minor_allele = 1
 
-        pop_freq = np.where(genos[:, i]== minor_allele)[0].shape[0] / genos.shape[0]
+        pop_freq = np.where(genos[:, i]== minor_allele)[0].shape[0] / float(genos.shape[0])
 
         eur_snps = np.where(lanc[:, i]==0)
         eur_ref_count = np.where(genos[eur_snps[0], i]==minor_allele)[0].shape[0]
