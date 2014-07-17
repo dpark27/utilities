@@ -23,7 +23,7 @@ def output_lanc_avg(avgs, output_file):
     for i in sorted(avgs.keys()):
         avg = avgs[i]
         row_to_write = [i] + avg
-        row_to_write = ' '.join(row_to_write) + '\n'
+        row_to_write = ' '.join(map(str, row_to_write)) + '\n'
         o_file.write(row_to_write)
     o_file.close()
 
