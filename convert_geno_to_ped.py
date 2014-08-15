@@ -57,9 +57,13 @@ def output_ped_file(genotypes, idv_ped_info, ped_file_output, snp_data, chunk, c
 
 
 def get_idv_genotypes(geno_file, snp_data, n_idvs, chunk, chunk_size):
-    genotypes = np.empty([len(snp_data.keys()), 2*chunk_size], dtype='S1')
     chunk_start = ((chunk-1) * chunk_size)
     chunk_end = ((chunk-1) * chunk_size) + chunk_size
+    ncols = 2 * chunk_size
+    if chunk_end > n_idvs:
+        chunk_end = n_idvs
+        ncols = 2*(chunk_end - chunk_start)
+    genotypes = np.empty([len(snp_data.keys()), ncols], dtype='S1')
     idx = 0
     i_file = open(geno_file, 'rb')
     for line in i_file:
